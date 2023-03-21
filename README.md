@@ -2,14 +2,12 @@
 
 A plugin for Composer. It warns user for outdated packages from last major versions after update command.
 
+[![CI](https://github.com/dereuromark/composer-versions-check/actions/workflows/ci.yml/badge.svg)](https://github.com/dereuromark/composer-versions-check/actions/workflows/ci.yml)
 [![Latest Stable Version](https://poser.pugx.org/dereuromark/composer-versions-check/v/stable)](https://packagist.org/packages/dereuromark/composer-versions-check)
 [![License](https://poser.pugx.org/dereuromark/composer-versions-check/license)](https://packagist.org/packages/dereuromark/composer-versions-check)
-
 [![Total Downloads](https://poser.pugx.org/dereuromark/composer-versions-check/downloads)](https://packagist.org/packages/dereuromark/composer-versions-check)
 [![Monthly Downloads](https://poser.pugx.org/dereuromark/composer-versions-check/d/monthly)](https://packagist.org/packages/dereuromark/composer-versions-check)
 [![Daily Downloads](https://poser.pugx.org/dereuromark/composer-versions-check/d/daily)](https://packagist.org/packages/dereuromark/composer-versions-check)
-
-[![Build Status](https://travis-ci.org/Soullivaneuh/composer-versions-check.svg?branch=master)](https://travis-ci.org/Soullivaneuh/composer-versions-check)
 
 ![composer-versions-check_demo](https://cloud.githubusercontent.com/assets/1698357/14637529/2e32a778-0632-11e6-99c7-0e1c284a7436.gif)
 
