@@ -1,5 +1,5 @@
 {
-    "name": "sllh/composer-versions-check",
+    "name": "dereuromark/composer-versions-check",
     "description": "Checks if packages are up to date to last major versions after update",
     "keywords": ["composer", "plugin", "update", "versions"],
     "type": "composer-plugin",
@@ -8,6 +8,10 @@
         {
             "name": "Sullivan SENECHAL",
             "email": "soullivaneuh@gmail.com"
+        },
+        {
+            "name": "Mark Scherer",
+            "email": "euromark@web.de"
         }
     ],
     "require": {
