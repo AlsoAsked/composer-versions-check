@@ -1,6 +1,6 @@
 <?php
 
-namespace SLLH\ComposerVersionsCheck\Tests;
+namespace ComposerVersionsCheck\Tests;
 
 use Composer\Package\Link;
 use Composer\Package\Package;
@@ -9,7 +9,7 @@ use Composer\Repository\ArrayRepository;
 use Composer\Repository\WritableArrayRepository;
 use Composer\Semver\Constraint\Constraint;
 use PHPUnit\Framework\TestCase;
-use SLLH\ComposerVersionsCheck\VersionsCheck;
+use ComposerVersionsCheck\VersionsCheck;
 
 /**
  * @author Sullivan Senechal <soullivaneuh@gmail.com>

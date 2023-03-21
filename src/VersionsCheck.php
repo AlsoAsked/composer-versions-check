@@ -1,6 +1,6 @@
 <?php
 
-namespace SLLH\ComposerVersionsCheck;
+namespace ComposerVersionsCheck;
 
 use Composer\Package\AliasPackage;
 use Composer\Package\Link;
@@ -15,7 +15,7 @@ use Composer\Semver\Constraint\Constraint;
 /**
  * @author Sullivan Senechal <soullivaneuh@gmail.com>
  */
-final class VersionsCheck
+class VersionsCheck
 {
     /**
      * @var OutdatedPackage[]

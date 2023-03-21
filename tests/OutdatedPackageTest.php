@@ -1,11 +1,11 @@
 <?php
 
-namespace SLLH\ComposerVersionsCheck\Tests;
+namespace ComposerVersionsCheck\Tests;
 
 use Composer\Package\Package;
 use Composer\Package\PackageInterface;
 use PHPUnit\Framework\TestCase;
-use SLLH\ComposerVersionsCheck\OutdatedPackage;
+use ComposerVersionsCheck\OutdatedPackage;
 
 /**
  * @author Sullivan Senechal <soullivaneuh@gmail.com>

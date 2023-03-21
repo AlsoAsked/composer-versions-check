@@ -1,6 +1,6 @@
 <?php
 
-namespace SLLH\ComposerVersionsCheck;
+namespace ComposerVersionsCheck;
 
 use Composer\Composer;
 use Composer\EventDispatcher\EventSubscriberInterface;
@@ -16,7 +16,7 @@ use Composer\Script\ScriptEvents;
 /**
  * @author Sullivan Senechal <soullivaneuh@gmail.com>
  */
-final class VersionsCheckPlugin implements PluginInterface, EventSubscriberInterface
+class VersionsCheckPlugin implements PluginInterface, EventSubscriberInterface
 {
     /**
      * @var Composer

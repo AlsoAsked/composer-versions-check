@@ -1,6 +1,6 @@
 <?php
 
-namespace SLLH\ComposerVersionsCheck\Tests;
+namespace ComposerVersionsCheck\Tests;
 
 use Composer\Command\UpdateCommand;
 use Composer\Composer;
@@ -20,7 +20,7 @@ use Composer\Repository\WritableArrayRepository;
 use Composer\Script\ScriptEvents;
 use Composer\Util\HttpDownloader;
 use PHPUnit\Framework\TestCase;
-use SLLH\ComposerVersionsCheck\VersionsCheckPlugin;
+use ComposerVersionsCheck\VersionsCheckPlugin;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Output\NullOutput;
 
@@ -35,7 +35,7 @@ class VersionsCheckPluginTest extends TestCase
     private $io;
 
     /**
-     * @var Composer|\PHPUnit_Framework_MockObject_MockObject
+     * @var Composer|\PHPUnit\Framework\MockObject\MockObject
      */
     private $composer;
 

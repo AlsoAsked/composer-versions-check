@@ -17,13 +17,13 @@
 
     <testsuites>
         <testsuite name="Composer version-check plugin bridge Test Suite">
-            <directory >./tests/</directory>
+            <directory >tests/</directory>
         </testsuite>
     </testsuites>
 
     <filter>
         <whitelist>
-            <directory>./src</directory>
+            <directory>src/</directory>
         </whitelist>
     </filter>
 </phpunit>

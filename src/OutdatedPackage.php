@@ -1,6 +1,6 @@
 <?php
 
-namespace SLLH\ComposerVersionsCheck;
+namespace ComposerVersionsCheck;
 
 use Composer\Package\Link;
 use Composer\Package\PackageInterface;
@@ -8,7 +8,7 @@ use Composer\Package\PackageInterface;
 /**
  * @author Sullivan Senechal <soullivaneuh@gmail.com>
  */
-final class OutdatedPackage
+class OutdatedPackage
 {
     /**
      * @var PackageInterface
