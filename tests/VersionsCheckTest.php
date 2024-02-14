@@ -49,13 +49,12 @@ class VersionsCheckTest extends TestCase
     }
 
     /**
-     * @dataProvider getOutdatedDetectionTestData
-     *
      * @param string $actualVersion
      * @param string $higherVersion
      * @param bool   $shouldBeUpdated
      * @param bool   $preferStable
      */
+    #[\PHPUnit\Framework\Attributes\DataProvider('getOutdatedDetectionTestData')]
     public function testOutdatedDetection($actualVersion, $higherVersion, $shouldBeUpdated, $preferStable = false)
     {
         $this->distRepository->addPackage(new Package('foo/bar', $higherVersion, $higherVersion));
@@ -84,7 +83,7 @@ EOF
     /**
      * @return array
      */
-    public function getOutdatedDetectionTestData()
+    public static function getOutdatedDetectionTestData()
     {
         return array(
             array('1.0.0', '1.0.0', false),
@@ -101,11 +100,10 @@ EOF
     }
 
     /**
-     * @dataProvider getMultiplePackagesComparisonTestsData
-     *
      * @param bool $preferStable
      * @param int  $outdatedPackagesCount
      */
+    #[\PHPUnit\Framework\Attributes\DataProvider('getMultiplePackagesComparisonTestsData')]
     public function testMultiplePackagesComparison(array $packagesData, $preferStable, $outdatedPackagesCount)
     {
         $this->rootPackage->setMinimumStability('dev');
@@ -128,7 +126,7 @@ EOF
     /**
      * @return array
      */
-    public function getMultiplePackagesComparisonTestsData()
+    public static function getMultiplePackagesComparisonTestsData()
     {
         return array(
             array(array(
@@ -159,7 +157,7 @@ EOF
         $this->localRepository->addPackage(new Package('foo/bar', '1.1', '1.1'));
 
         $linkedPackage = new Package('dummy/link', '1.0', '1.0');
-        $linkedPackage->setRequires(array(new Link('dummy/link', 'foo/bar', new Constraint(Constraint::STR_OP_GT, '1.0'), '', '1.*')));
+        $linkedPackage->setRequires(['foo/bar' => new Link('dummy/link', 'foo/bar', new Constraint(Constraint::STR_OP_GT, '1.0'), '', '1.*')]);
         $this->localRepository->addPackage($linkedPackage);
 
         // To test root package detection
@@ -189,9 +187,7 @@ EOF
             , $this->versionsCheck->getOutput(false));
     }
 
-    /**
-     * @dataProvider getRootOnlyPackageTestsData
-     */
+    #[\PHPUnit\Framework\Attributes\DataProvider('getRootOnlyPackageTestsData')]
     public function testRootOnlyPackage(array $packagesData, array $packagesRequired, array $packagesDevRequired, $rootOnly, $outdatedPackagesCount)
     {
         $shouldBeUpdatedOutput = $this->addPackagesAndGetShouldBeUpdatedOutput($packagesData);
@@ -213,7 +209,7 @@ EOF
     /**
      * @return array
      */
-    public function getRootOnlyPackageTestsData()
+    public static function getRootOnlyPackageTestsData()
     {
         return array(
             array(array(
@@ -226,9 +222,9 @@ EOF
                 'vendor/package-3' => array('1.0.1', array('1.0.0', '1.0.1', '2.0.0-alpha1'), false),
                 'vendor/prefer-stable' => array('1.0.1', array('1.0.0', '1.0.1', '2.0.0-alpha1'), false),
             ), array(
-                'foo/bar' => new Link('foo/bar', 'foo/bar'),
+                'foo/bar' => new Link('foo/bar', 'foo/bar', new Constraint(Constraint::STR_OP_GE, '1.0')),
             ), array(
-                'vendor/package-2' => new Link('vendor/package-2', 'vendor/package-2'),
+                'vendor/package-2' => new Link('vendor/package-2', 'vendor/package-2', new Constraint(Constraint::STR_OP_GE, '2.0')),
             ), true, 2),
             array(array(
                 'foo/bar' => array('1.0.0', array('1.0.0', '1.0.1', '1.0.2', '1.0.4', '2.0.0'), '2.0.0'),
@@ -240,9 +236,9 @@ EOF
                 'vendor/package-3' => array('1.0.1', array('1.0.0', '1.0.1', '2.0.0-alpha1'), '2.0.0-alpha1'),
                 'vendor/prefer-stable' => array('1.0.1', array('1.0.0', '1.0.1', '2.0.0-alpha1'), '2.0.0-alpha1'),
             ), array(
-                'foo/bar' => new Link('foo/bar', 'foo/bar'),
+                'foo/bar' => new Link('foo/bar', 'foo/bar', new Constraint(Constraint::STR_OP_GE, '1.0')),
             ), array(
-                'vendor/package-2' => new Link('vendor/package-2', 'vendor/package-2'),
+                'vendor/package-2' => new Link('vendor/package-2', 'vendor/package-2', new Constraint(Constraint::STR_OP_GE, '1.0')),
             ), false, 6),
         );
     }

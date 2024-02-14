@@ -40,6 +40,11 @@ class VersionsCheckPluginTest extends TestCase
     private $composer;
 
     /**
+     * @var \Composer\Package\RootPackage
+     */
+    private $rootPackage;
+
+    /**
      * @var Config
      */
     private $config;
@@ -52,11 +57,20 @@ class VersionsCheckPluginTest extends TestCase
         $this->io = new BufferIO();
         $this->composer = $this->createMock(Composer::class);
         $this->config = new Config(false);
+        $this->config->merge([
+            'config' => [
+                'allow-plugins' => [
+                    'my/project' => true,
+                ],
+            ]
+        ]);
+
+        $this->rootPackage = new RootPackage('my/project', '1.0.0', '1.0.0');
 
         $this->composer->expects($this->any())->method('getConfig')
             ->willReturn($this->config);
         $this->composer->expects($this->any())->method('getPackage')
-            ->willReturn(new RootPackage('my/project', '1.0.0', '1.0.0'));
+            ->willReturn($this->rootPackage);
         $this->composer->expects($this->any())->method('getPluginManager')
             ->willReturn(new PluginManager($this->io, $this->composer));
         $this->composer->expects($this->any())->method('getEventDispatcher')
@@ -70,16 +84,12 @@ class VersionsCheckPluginTest extends TestCase
     }
 
     /**
-     * @dataProvider getTestOptionsData
-     *
      * @param array|null $configData
      */
+    #[\PHPUnit\Framework\Attributes\DataProvider('getTestOptionsData')]
     public function testOptions($configData, array $expectedOptions)
     {
-        if (null === $configData) {
-            $this->composer->expects($this->any())->method('getConfig')
-                ->willReturn(null);
-        } else {
+        if ($configData !== null) {
             $this->config->merge($configData);
         }
 
@@ -89,7 +99,7 @@ class VersionsCheckPluginTest extends TestCase
         $this->assertSame($expectedOptions, $plugin->getOptions());
     }
 
-    public function getTestOptionsData()
+    public static function getTestOptionsData()
     {
         return array(
             'No option' => array(
@@ -283,7 +293,7 @@ EOF
         $pluginManagerReflection = new \ReflectionClass($this->composer->getPluginManager());
         $addPluginReflection = $pluginManagerReflection->getMethod('addPlugin');
         $addPluginReflection->setAccessible(true);
-        $addPluginReflection->invoke($this->composer->getPluginManager(), $plugin);
+        $addPluginReflection->invoke($this->composer->getPluginManager(), $plugin, false, $this->rootPackage);
     }
 
     private function assertSameOutput($expectedOutput, $message = '')
